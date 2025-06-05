@@ -9,4 +9,6 @@ func main() {
 	application := app.App{}
 
 	application.Bootstrap()
+	application.ShowStartupMenu()
+
 }
