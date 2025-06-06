@@ -54,6 +54,8 @@ func (app App) showAuthenticationMenu() {
 		fmt.Println(authResult)
 
 	case 2:
+		loginResult := auth.Login()
+		fmt.Println(loginResult)
 
 	default:
 		fmt.Println("Wrong number")

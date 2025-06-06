@@ -1,6 +1,7 @@
 package authentication
 
 import (
+	"cli_todo/helper"
 	"cli_todo/response"
 	"encoding/json"
 	"fmt"
@@ -56,4 +57,76 @@ func (user *User) Register() any {
 	responseMsg.SetStatus(200)
 	return responseMsg.BuildResponse()
 
+}
+
+func (user *User) Login() any {
+
+	var username, password string
+	var allUsers []User
+	isUserFound, isPasswordFound := false, false
+	currentUser := User{}
+
+	fmt.Print("Enter username: ")
+	fmt.Scanln(&username)
+
+	fmt.Print("Enter password: ")
+	fmt.Scanln(&password)
+
+	users, readUsersErr := os.ReadFile(USERS_DATABASE_FILE)
+
+	json.Unmarshal(users, &allUsers)
+
+	if readUsersErr != nil {
+		log.Fatal("Error in reading users file")
+	}
+
+	for _, value := range allUsers {
+		if value.User == username {
+			isUserFound = true
+		}
+
+		if value.Password == password {
+			isPasswordFound = true
+		}
+
+		if isUserFound && isPasswordFound {
+			currentUser = value
+		}
+	}
+
+	if !isUserFound || !isPasswordFound {
+		responseMsg := response.Response{}
+		responseMsg.SetContent("username or password is wrong")
+		responseMsg.SetStatus(401)
+		return responseMsg.BuildResponse()
+	}
+
+	user.insertCookie(currentUser)
+
+	responseMsg := response.Response{}
+	responseMsg.SetContent("You have Loged in successfully")
+	responseMsg.SetStatus(401)
+	return responseMsg.BuildResponse()
+}
+
+func (user *User) insertCookie(currentUser User) {
+
+	var users []User
+	var oldUsers []User
+
+	allUsers, _ := os.ReadFile("users.json")
+	json.Unmarshal(allUsers, &users)
+
+	for _, value := range users {
+		if currentUser.User == value.User {
+			value.Cookie = helper.GetUserHardwareSerial()
+		}
+		oldUsers = append(oldUsers, value)
+	}
+
+	usersFile, _ := os.OpenFile("users.json", os.O_WRONLY|os.O_TRUNC, 0644)
+
+	cc, _ := json.Marshal(&oldUsers)
+
+	_, _ = usersFile.Write(cc)
 }
