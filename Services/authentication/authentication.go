@@ -107,7 +107,7 @@ func (user *User) Login() any {
 
 	responseMsg := response.Response{}
 	responseMsg.SetContent("You have Loged in successfully")
-	responseMsg.SetStatus(401)
+	responseMsg.SetStatus(200)
 	return responseMsg.BuildResponse()
 }
 

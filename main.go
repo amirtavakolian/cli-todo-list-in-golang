@@ -6,7 +6,7 @@ import (
 
 func main() {
 
-	application := app.App{}
+	var application app.App
 
 	application.Bootstrap()
 	application.ShowStartupMenu()
