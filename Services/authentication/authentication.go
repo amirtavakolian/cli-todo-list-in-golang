@@ -2,8 +2,8 @@ package authentication
 
 import (
 	"cli_todo/Services/response"
-"cli_todo/helper"
-		"encoding/json"
+	"cli_todo/helper"
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -31,6 +31,8 @@ func (user *User) Register() any {
 
 	readUsersFile, _ := os.ReadFile(USERS_DATABASE_FILE)
 	json.Unmarshal(readUsersFile, &oldUsers)
+
+	user.Id = len(oldUsers) + 1
 
 	for _, value := range oldUsers {
 		fmt.Println(value)
