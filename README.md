@@ -1,9 +1,19 @@
 
 # To-Do List CLI App in Golang
 
-🔴 To simulate the cookie, the CPU serial number is used, 
-which is obtained using `wmic cpu get ProcessorId` <br> 
+🔴 To simulate the cookie base authentication, the CPU serial number is used, 
+which is obtained using <br>`wmic cpu get ProcessorId` <br> 
 Therefore, to ensure the software works correctly, please run the code on a <mark><strong>Windows operating system</strong></mark>
+
+All users data store in users.json file like below:
+```json
+[{
+  "Id":1,
+  "User":"admin",
+  "Password":"admin",
+  "Cookie":"105CTTCC11B51R55"
+}]
+```
 
 <hr>
 
