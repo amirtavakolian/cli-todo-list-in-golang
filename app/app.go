@@ -1,7 +1,8 @@
 package app
 
 import (
-	"cli_todo/Services/Category"
+	"bufio"
+"cli_todo/Services/Category"
 	"cli_todo/Services/authentication"
 	"cli_todo/helper"
 	"encoding/json"
@@ -56,7 +57,9 @@ func (app App) showTodoListMenu() {
 	switch selectOption {
 	case 1:
 		fmt.Print("Category title: ")
-		fmt.Scanln(&category.Title)
+		scanner := bufio.NewScanner(os.Stdin)
+        scanner.Scan()
+        category.Title = scanner.Text()
 		result := category.Store()
 		fmt.Println(result)
 
