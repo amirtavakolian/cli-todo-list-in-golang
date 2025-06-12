@@ -39,6 +39,26 @@ func (app App) ShowStartupMenu() {
 		if !isUserRegistredBefore {
 			app.showAuthenticationMenu()
 		}
+
+		app.showTodoListMenu()
+	}
+}
+
+func (app App) showTodoListMenu() {
+	var selectOption int
+
+	fmt.Println("\n1- Create Category\n2- Create Task\n")
+	fmt.Print("Select Option: ")
+	fmt.Scanln(&selectOption)
+
+	switch selectOption {
+	case 1:
+
+	case 2:
+
+	default:
+		fmt.Println("Wrong number")
+		os.Exit(1)
 	}
 }
 
