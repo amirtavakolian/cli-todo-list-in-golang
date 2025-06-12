@@ -1,8 +1,9 @@
 package app
 
 import (
+	"cli_todo/Services/Category"
 	"cli_todo/Services/authentication"
-"cli_todo/helper"
+	"cli_todo/helper"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -32,20 +33,21 @@ func (app App) createUsersFile() {
 	}
 }
 
-func (app App) ShowStartupMenu() {
+func (app App) ShowStartupMenu() string {
 	for {
 		isUserRegistredBefore := app.checkIfUserRegistredBefore()
 
 		if !isUserRegistredBefore {
 			app.showAuthenticationMenu()
+		} else {
+			app.showTodoListMenu()
 		}
-
-		app.showTodoListMenu()
 	}
 }
 
 func (app App) showTodoListMenu() {
 	var selectOption int
+	var category Category.Category
 
 	fmt.Println("\n1- Create Category\n2- Create Task\n")
 	fmt.Print("Select Option: ")
@@ -53,6 +55,10 @@ func (app App) showTodoListMenu() {
 
 	switch selectOption {
 	case 1:
+		fmt.Print("Category title: ")
+		fmt.Scanln(&category.Title)
+		result := category.Store()
+		fmt.Println(result)
 
 	case 2:
 
