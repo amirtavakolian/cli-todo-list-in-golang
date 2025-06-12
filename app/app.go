@@ -1,8 +1,8 @@
 package app
 
 import (
-	"cli_todo/authentication"
-	"cli_todo/helper"
+	"cli_todo/Services/authentication"
+"cli_todo/helper"
 	"encoding/json"
 	"errors"
 	"fmt"
