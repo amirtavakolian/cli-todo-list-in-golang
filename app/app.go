@@ -13,9 +13,11 @@ import (
 type App struct{}
 
 const USERS_DATABASE_FILE = "users.json"
+const CATEGORIES_DATABASE_FILE = "categories.json"
 
 func (app App) Bootstrap() {
 	app.createUsersFile()
+	app.createCategoriesFile()
 }
 
 func (app App) createUsersFile() {
@@ -83,4 +85,16 @@ func (app App) checkIfUserRegistredBefore() bool {
 		}
 	}
 	return false
+}
+
+func (app App) createCategoriesFile() {
+	_, fileExistErr := os.Stat(CATEGORIES_DATABASE_FILE)
+
+	if fileExistErr != nil {
+		_, createCategoriesFileErr := os.OpenFile(CATEGORIES_DATABASE_FILE, os.O_CREATE, 0777)
+
+		if createCategoriesFileErr != nil {
+			log.Fatal("Error in creating categories file")
+		}
+	}
 }
