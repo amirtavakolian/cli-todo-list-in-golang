@@ -49,7 +49,7 @@ func (app App) showTodoListMenu() {
 	var selectOption int
 	var category Category.Category
 
-	fmt.Println("\n1- Create Category\n2- Create Task\n")
+	fmt.Println("\n1- Create Category\n2- Create Task\n3- Exist")
 	fmt.Print("Select Option: ")
 	fmt.Scanln(&selectOption)
 
@@ -61,6 +61,11 @@ func (app App) showTodoListMenu() {
 		fmt.Println(result)
 
 	case 2:
+
+
+	case 3:
+		fmt.Println("Don't forget to come back...")
+		os.Exit(0)
 
 	default:
 		fmt.Println("Wrong number")
