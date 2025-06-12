@@ -1,6 +1,12 @@
 
 # To-Do List CLI App in Golang
 
+🔴 To simulate the cookie, the CPU serial number is used, 
+which is obtained using `wmic cpu get ProcessorId` <br> 
+Therefore, to ensure the software works correctly, please run the code on a <mark><strong>Windows operating system</strong></mark>
+
+<hr>
+
 A command-line To-Do list application built with Golang.  
 Easily add, list, complete, and delete your tasks right from the terminal.
 
@@ -30,36 +36,6 @@ Run the app:
 ./todo
 ```
 
-🛠️ Usage
-```bash
-todo add "Buy groceries"
-todo list
-todo done 2
-todo delete 3
-```
-
-Example
-```bash
-$ todo add "Finish homework"
-Task added: "Finish homework"
-
-$ todo list
-1. [ ] Buy groceries
-2. [ ] Finish homework
-
-$ todo done 1
-Task marked as completed: "Buy groceries"
-
-$ todo list
-1. [x] Buy groceries
-2. [ ] Finish homework
-🧾 File Structure
-main.go – Entry point for the application
-
-task.go – Task model and data handling
-
-storage.go – File read/write logic
-```
 
 💾 Data Persistence
 Tasks are stored in a local JSON file (e.g., tasks.json) in the same directory as the executable. This ensures your task list is saved even after restarting the program.
