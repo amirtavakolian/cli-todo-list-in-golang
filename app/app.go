@@ -2,8 +2,8 @@ package app
 
 import (
 	"bufio"
-"cli_todo/Services/Category"
-	"cli_todo/Services/authentication"
+"cli_todo/services/category"
+	"cli_todo/services/authentication"
 	"cli_todo/helper"
 	"encoding/json"
 	"errors"
@@ -48,15 +48,15 @@ func (app App) ShowStartupMenu() string {
 
 func (app App) showTodoListMenu() {
 	var selectOption int
-	var category Category.Category
+	var category category.Category
 
-	fmt.Println("\n1- Create Category\n2- Create Task\n3- Exist")
+	fmt.Println("\n1- Create category\n2- Create task\n3- Exist")
 	fmt.Print("Select Option: ")
 	fmt.Scanln(&selectOption)
 
 	switch selectOption {
 	case 1:
-		fmt.Print("Category title: ")
+		fmt.Print("category title: ")
 		scanner := bufio.NewScanner(os.Stdin)
         scanner.Scan()
         category.Title = scanner.Text()

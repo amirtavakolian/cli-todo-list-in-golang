@@ -1,7 +1,7 @@
 package authentication
 
 import (
-	"cli_todo/Services/response"
+	"cli_todo/services/response"
 	"cli_todo/helper"
 	"encoding/json"
 	"fmt"

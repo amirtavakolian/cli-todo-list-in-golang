@@ -1,8 +1,8 @@
-package Category
+package category
 
 import (
-	"cli_todo/Services/authentication"
-	"cli_todo/Services/response"
+	"cli_todo/services/authentication"
+	"cli_todo/services/response"
 	"cli_todo/helper"
 	"encoding/json"
 	"log"
@@ -45,7 +45,7 @@ func (category *Category) Store() string {
 	categoriesFile.Write(marshaledCategories)
 
 	responseMsg.SetStatus(200)
-	responseMsg.SetContent("Category created successfully")
+	responseMsg.SetContent("category created successfully")
 	return responseMsg.BuildResponse()
 
 }
