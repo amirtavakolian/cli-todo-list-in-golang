@@ -45,15 +45,17 @@ func (user *User) Register() any {
 
 	oldUsers = append(oldUsers, *user)
 
-	openFile, openFileErr := os.OpenFile(USERS_DATABASE_FILE, os.O_RDWR, 0777)
+	openUsersFile, openUsersFileErr := os.OpenFile(USERS_DATABASE_FILE, os.O_RDWR, 0777)
 
-	if openFileErr != nil {
+	if openUsersFileErr != nil {
 		log.Fatal("Error in opening users file")
 	}
 
 	marshalUser, _ := json.Marshal(oldUsers)
 
-	_, _ = openFile.Write(marshalUser)
+	openUsersFile.Write(marshalUser)
+
+	openUsersFile.Close()
 
 	responseMsg.SetContent("You have registered successfully")
 	responseMsg.SetStatus(200)
