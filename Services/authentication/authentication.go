@@ -5,6 +5,7 @@ import (
 	"cli_todo/helper"
 	"encoding/json"
 	"fmt"
+	"golang.org/x/crypto/bcrypt"
 	"log"
 	"os"
 )
@@ -28,6 +29,10 @@ func (user *User) Register() any {
 
 	fmt.Print("Enter password: ")
 	fmt.Scanln(&user.Password)
+
+	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(user.Password), 14)
+
+	user.Password = string(hashedPassword)
 
 	readUsersFile, _ := os.ReadFile(USERS_DATABASE_FILE)
 	json.Unmarshal(readUsersFile, &oldUsers)
@@ -89,7 +94,9 @@ func (user *User) Login() any {
 			isUserFound = true
 		}
 
-		if value.Password == password {
+		checkPassResult := bcrypt.CompareHashAndPassword([]byte(value.Password), []byte(password))
+
+		if checkPassResult == nil {
 			isPasswordFound = true
 		}
 

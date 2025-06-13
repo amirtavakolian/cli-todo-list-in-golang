@@ -3,3 +3,4 @@ modules.xml
 cli-todo.iml
 workspace.xml
 *.json
+*.sum

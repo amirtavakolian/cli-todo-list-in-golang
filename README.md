@@ -10,7 +10,7 @@ All users data store in users.json file like below:
 [{
   "Id":1,
   "User":"admin",
-  "Password":"admin",
+  "Password":"$2a$14$9ZtKFaoueBoLiNGRzQAgc.Z9oqorew2KjUAP3F1hHWqMlxSWcJnoO",
   "Cookie":"105CTTCC11B51R55"
 }]
 ```
