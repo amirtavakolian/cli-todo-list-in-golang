@@ -93,6 +93,7 @@ func (user *User) Login() any {
 
 		if isUserFound && isPasswordFound {
 			currentUser = value
+			break
 		}
 	}
 
